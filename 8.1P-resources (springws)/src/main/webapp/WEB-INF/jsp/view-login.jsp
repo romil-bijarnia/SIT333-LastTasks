@@ -1,21 +1,21 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
+    <title>Login</title>
+</head>
 <body>
-
-<h2>HTML Forms</h2>
-
-<div>${message}</div><br/><br/>
-
+<h2>Please log in to start the quiz</h2>
 <form action="/login" method="post">
-  <label for="username">User name:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="passwd">Password:</label><br>
-  <input type="password" id="passwd" name="passwd"><br>
-  <label for="dob">DoB:</label><br>
-  <input type="date" id="dob" name="dob"><br><br>   
-  <input type="submit" value="Login">
-</form> 
-
-<p>If you click the "Login" button, the form-data will be sent to login-servlet.</p>
-
+    User name: <input type="text" id="username" name="username"/><br/>
+    Password: <input type="password" id="passwd" name="passwd"/><br/>
+    Date of Birth: <input type="date" id="dob" name="dob"/><br/>
+    <input type="submit" value="Login"/>
+</form>
+<%
+    String msg = (String) request.getAttribute("message");
+    if (msg != null) {
+%>
+    <p id="message" style="color:red;"><%= msg %></p>
+<% } %>
 </body>
 </html>

@@ -1,26 +1,28 @@
 package web.service;
 
+/**
+ * Provides methods to perform math operations for the quiz questions.
+ */
 public class MathQuestionService {
 
-	/**
-	 * Calculate Q1 result.
-	 * @param number1
-	 * @param number2
-	 * @return
-	 */
-	public static double q1Addition(String number1, String number2) {
-		double result = Double.valueOf(number1) + Double.valueOf(number2);
-		return result;
-	}
-	
-	/**
-	 * Calculate Q2 result.
-	 * @param number1
-	 * @param number2
-	 * @return
-	 */
-	public static double q2Subtraction(String number1, String number2) {
-		double result = Double.valueOf(number1) - Double.valueOf(number2);
-		return result;
-	}
+    public static double q1Addition(String number1, String number2) {
+        // Parse inputs as doubles and return their sum
+        double a = Double.parseDouble(number1);
+        double b = Double.parseDouble(number2);
+        return a + b;
+    }
+
+    public static double q2Subtraction(String number1, String number2) {
+        // Parse inputs and return number1 minus number2
+        double a = Double.parseDouble(number1);
+        double b = Double.parseDouble(number2);
+        return a - b;
+    }
+
+    public static double q3Multiplication(String number1, String number2) {
+        // Parse inputs and return their product
+        double a = Double.parseDouble(number1);
+        double b = Double.parseDouble(number2);
+        return a * b;
+    }
 }

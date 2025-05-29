@@ -1,8 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
+    <title>Question 3 - Multiplication</title>
+</head>
 <body>
-
-<h2>Q3</h2>
- 
-
+<h2>Question 3: Multiplication</h2>
+<p>Enter two numbers to multiply, then provide the product as your answer.</p>
+<form action="/q3" method="post">
+    Number 1: <input type="number" name="number1"/> 
+    Number 2: <input type="number" name="number2"/> 
+    Your Answer: <input type="number" name="result"/>
+    <button type="submit">Submit</button>
+</form>
+<%
+    String msg = (String) request.getAttribute("message");
+    if (msg != null) {
+%>
+    <p id="message" style="color:red;"><%= msg %></p>
+<% } %>
 </body>
 </html>
