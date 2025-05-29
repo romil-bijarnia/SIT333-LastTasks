@@ -1,0 +1,172 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red11\green76\blue180;}
+{\*\expandedcolortbl;;\csgray\c0;\cspthree\c16561\c38187\c73193;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs40 \cf2 SIT333 Software Quality and Testing\
+
+\fs31 Pass Task: Turn 7.1P into a STEM game for grade 4-6 kids\
+Overview\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 In 7.1P you have created a login.html page and connected it to an HTTP endpoint for\
+authentication service. In this task, you will need to transform this application to a STEM game\
+application consisting of several math questions for students of grade 4-6 which you would like\
+to show during Deakin's Open day. After successful login, the next page shows a math problem\
+to be answered by the user and click on submit. If the answer is correct, the next page shows\
+another question, otherwise, the current page shows an error message asking the user to try it\
+again. A new Java web project is created for this project to allow the page navigation to happen\
+compared to the previous one where HTML files were outside of the Java HTTP endpoints which\
+could only receive GET or POST requests but could not navigate through pages. Two sample math\
+problems of addition and subtraction are created, and, in this task, you will need to do unit testing\
+of the math operations and create the third math problem HTML page. You will need to create\
+unit test cases for the math operations and do functional testing of the pages using Selenium.
+\fs31 Instructions\
+
+\fs24 For this task you will need to\
+1.
+\f1  
+\f0 Download task8_1P.zip Java project and unzip it in a common folder (say, java_projects)\
+which you will be using to store all the weekly projects.\
+2.
+\f1  
+\f0 Import the project (as a maven project) in Eclipse IDE.\
+3.
+\f1  
+\f0 Observe the project folder structure as below -\
+Directory structure MyServer.java\
+src/main/webapp Folder containing HTML files within the project. JSP files contain\
+HTML codes. You will need to create functional test cases for\
+these HTML files using Selenium.\
+MyServer.java\
+Package: web\
+Web application entry point, you have to run this file to start the\
+web server.\
+RoutingServlet.java\
+Package: web.handler\
+Handles mapping between URL and endpoints, for example,\
+what Java function to call when URL contains /login.\
+LoginService.java\
+Package: web.service\
+Authentication logic for /login URL routing. The login function\
+within this Java file is called to authenticate a user.\
+MathQuestionService.java\
+Package: web.service\
+Contains math functions for STEM tests. These functions are\
+used to evaluate users when a math question is answered and asubmit button is pressed on the page. You will need to unit test\
+these functions.\
+Line 9-20 Web application starting point. Inside main() function, an\
+application using a third-party Java library called Spring\
+Framework is utilised. You can run this file to start the web\
+server.\
+4.
+\f1  
+\f0 The RoutingServlet.java file contains code to bind GET/POST requests to functions for\
+each URL.\
+RoutingServlet.java\
+Line 19-23 Mapping of a GET URL part / to a Java function welcome() which returns a\
+HTML page called view-welcome.jsp. Only the file name without .jsp extension\
+is returned and the application appends the extension and returns the correctJSP file from src/main/webapp/WEB-INF/jsp folder. The URL part / indicates a\
+root URL without any sub-URL. \cf3 http://127.0.0.1:8080/\cf2  is a root URL.\
+Line 26-30 Mapping of a GET URL part /login to a Java function loginView() which returns\
+view-login.jsp HTML page. This page allows input elements and submitting a\
+HTML form in terms of POST method which is handled in login() function\
+below.\
+Line 33-57 Mapping of a POST URL part /login to a Java function login() which contains\
+logic to inspect login page data and call LoginService.login() function to\
+authenticate a user. Upon successful login, a redirect-view request is issued to\
+display page for URL part /q1 (line 46), otherwise the same /login view is\
+rendered with an error message which is generated in line 53.\
+As can be seen for each HTML page a GET mapping function is required to\
+deliver the corresponding URL part specific page. If the page contains an HTML\
+form, then a POST mapping function is required to serve the submitted form\
+and both the GET and POST mapping functions have the same URL part (such\
+as /login shown above).\
+5.
+\f1  
+\f0 The GET method handling in RoutingServlet.java shows how to deliver the view view-\
+q1.jsp and the POST method handling shows how to retrieve two numbers and the\
+user\'92s response for mathematical addition question. HTML form input values are passed\
+to MathQuestionService.java functions to get a response.\
+RoutingServlet.java\
+Line 75 Calls MathQuestionService.q1Addition() function with 2 numbers as\
+received from the HTML POST submission.MathQuestionService.java\
+Line 11-13 Q1Addition() function takes String format numbers, converts to double,\
+adds them and returns the result.\
+6.
+\f1  
+\f0 The Q1 math question page is shown below.\
+view-q1.jsp HTML rendered view\
+7.
+\f1  
+\f0 As you can see, if the numbers in Q1 form are submitted with empty values, they are\
+passed as it is to MathQuestionService.q1Addition() function. This results an error page\
+as below -8.
+\f1  
+\f0 Your job is to unit test MathQuestionService.java functions so the errors can be\
+eliminated, if not, reduce the number of errors. You will need to set proper message in\
+each questions POST mapping function (shown in step 4 above) so you can perform\
+functional tests using Selenium for success and failure cases.\
+Your focus in this task is to:\
+A.
+\f1  
+\f0 Study the project source and test codes and HTML code in JSP files to understand the\
+B.
+\f1  
+\f0 C.
+\f1  
+\f0 D.
+\f1  
+\f0 project better.\
+Write unit test cases to improve functions in MathQuestionService.java. This requires\
+you to ensure the error page is not displayed for the question pages (view-q1.jsp and\
+view-q2.jsp) which results from mainly value error.\
+Write functional test cases to validate if the application meets minimum level of\
+functionality to be a STEM math testing application.\
+Your goal should be to critically write test cases from both developer and test-team\
+member\'92s point of view to find flaws in the system.\
+E.
+\f1  
+\f0 Follow submission instructions on the first page and submit your work.\
+Like 7.1P submission, in this submission, you will need to submit below items -\
+\'95
+\f1  
+\f0 A PDF file listing unit test cases from developer point-of-view and functional test cases\
+from test-team point-of-view. You can use a table to describe each test case name,\
+description, intended result and test results.\
+\'95
+\f1  
+\f0 A self-reflection on testing an integrated web application compared to what has been\
+done in 7.1P.\
+\'95
+\f1  
+\f0 Your program\'92s source code. You can copy/paste your source code and test codes in\
+PDF.\
+\'95
+\f1  
+\f0 A screenshot of your GitHub page where your latest project folder is pushed.\
+You should discuss the following key ideas while preparing the submission items in relation to\
+your program.\'95
+\f1  
+\f0 Web application structure of separate HTML and Java endpoints within a single web\
+project and its testability aspects.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs28 Submit your work\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 When you are ready, login to OnTrack and submit your pdf which consolidates all the items\
+mentioned in the submission detail section above. Remember to save and backup your work.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs28 Complete your work\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs24 After your submission, your OnTrack reviewer (tutor) will review your submission and give you\
+feedback in about 5 business days. Your reviewer may further ask you some questions on the\
+weekly topics and/or about your submissions. You are required to address your OnTrack\
+reviewer\'92s questions as a form of task discussions. Please frequently login to OnTrack for the\
+task Discuss/Demonstrate or Resubmit equivalent to fix your work (if needed) based on the\
+feedback to get your task signed as Complete.}

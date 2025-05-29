@@ -1,0 +1,179 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red11\green76\blue180;\red251\green0\blue7;
+}
+{\*\expandedcolortbl;;\csgray\c0;\cspthree\c16561\c38187\c73193;\cspthree\c91747\c20037\c13852;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs40 \cf2 SIT333 Software Quality and Testing\
+
+\fs32 Pass Task: Integrate web front-end with Java API back end as part of\
+integration testing\
+Overview\
+
+\fs24 Web applications are often developed as separate front-end and back-end modules where HTML\
+based front ends (or web pages or client interface) interact with the back end (or cloud) through\
+well-defined APIs to receive services including authentication and access cloud resources.\
+Development of front and back ends may progress separately until they are merged to test their\
+integration. In this task you will need to develop HTML pages which will then communicate to\
+the HTTP endpoints (such as Java Servlets). These back-end HTTP request handlers invoke\
+business logic to provide services such as a login service that can access user directory or\
+database to authenticate a login request. You will need to create business logic functions as\
+needed and unit test them as you develop \'96 wearing a developer hat to test all your function\
+features. Next you will need to use login HTML pages and use selenium to do functional testing\
+of this page \'96 wearing a software quality assurance team member\'92s hat. The main goal wearing\
+both hats would be to test the software to break it from dev team and testing team\'92s point of\
+view. This also facilitates to experience an integration testing \'96 connecting front-end to back-\
+end.
+\fs32 Instructions\
+
+\fs24 For this task you will need to\
+1.
+\f1  
+\f0 Download task7_1P.zip Java project and unzip it in a common folder (say, java_projects)\
+which you will be using to store all the weekly projects.\
+
+\fs22 2.
+\f1  
+\f0\fs24 Import the project (as a maven project) in Eclipse IDE.\
+3.
+\f1  
+\f0 Observe the project folder structure as below -\
+
+\fs22 Directory structure MyServer.java\
+
+\fs24 File name Description\
+MyServer.java\
+Package: web\
+HTTP server module, you need to run this file to start web server.\
+It listens to port 8082. Open URL \cf3 http://127.0.0.1:8082\cf2  in a\
+browser and you should see a greeting message from the running\
+server.\
+WelcomeServlet.java\
+package: web.handler\
+Handles URL / (\cf3 http://127.0.0.1:8082/\cf2 ) and displays a greeting\
+message.\
+LoginServlet.java\
+Package: web.handler\
+Handles URL /login (\cf3 http://127.0.0.1:8082/login\cf2 ) and calls\
+LoginService.login() function to authenticate user.\
+RegistrationServlet.java\
+Package: web.handler\
+Handles URL /reg and calls RegistrationService.register() function.\
+\cf4 PASS tasks can leave this function as it is\cf2 .\
+4.
+\f1  
+\f0 The /login URL is routed to LoginServlet which extracts HTML form parameters such as\
+username, password and DoB and calls LoginService.login() to authenticate user. The\
+login function does not make use of DoB field in the example which you need to use\
+for authentication. Finally, renders a HTML string to display on browser as a response.\cf4 Note that the generated HTML string creates page title to reflect the login status, this is\
+to help to test the response by checking the page title from Selenium. You can come up\
+with your own response mechanism so that a form submission response can be\
+validated from Selenium side\cf2 .\
+
+\fs22 LoginServlet.java\
+LoginService.java\
+
+\fs24 5.
+\f1  
+\f0 6.
+\f1  
+\f0 As a developer, you must update the login function to make use of all 3 parameters\
+such as username, password and dob (date string format yyyy-mm-dd) and generate\
+unit test cases to test to cover any anomaly using one or more of boundary value,\
+equivalence class or decision-table based tests as appropriate.\
+As a test-team member, you must use Selenium to write functional test cases by\
+loading login.html and testing the login function and aim to find function flaws by usingall ranges of values including valid and invalid values. You may need to update Java files\
+in web.service package (LoginService.java) to enhance the authentication logic and unit\
+test them and update Java files in web.handler package (LoginServlet.java) to generate\
+authentication response which can be easily tested in Selenium. Currently response\
+HTML page\'92s title is set to string \'91success\'92 or 'fail\'92 based on authentication logic. You may\
+not require updating login.html file, but you should keep the fields same (username,\
+password, and dob).\
+Login.html\
+Web view\
+7.
+\f1  
+\f0 Selenium test example is shown in below figure and described in a table.\
+Line 34 Selenium web-driver opens login.html page.\
+Line 40-48 Locates fields including username and passwd and fills in new values.\
+Line 52-53 Locates submit button and clicks on it to submit the form.\
+Line 64 Verifies authentication response if it equals to a page title \'93success\'94.\
+LoginServiceTest.java8.
+\f1  
+\f0 You will need to update the LoginServiceTest.java file to add additional functional test\
+cases using Selenium.\
+9.
+\f1  
+\f0 You will need to create a new test file to include your unit test cases.\
+10.
+\f1  
+\f0 Upload your project folder to your GitHub account and take a screenshot.\
+Your focus in this task is to -A.
+\f1  
+\f0 Study login.html page and webserivce1 Eclipse Java project\'92s source and test files to\
+understand how the HTML form in login.html is submitted to interact with Java web\
+handler function located in LoginServlet.java. For this, you will need to run the\
+MyServer.java file to start HTTP web server.\
+B.
+\f1  
+\f0 Improve authentication logic in LoginService.java and write unit test cases (create a new\
+test file) to cover above 90% code coverage.\
+C.
+\f1  
+\f0 Update LoginServlet.java to generate HTTP response suitable for Selenium to receive it\
+so functional tests can be done easily. Currently, the response web page\'92s title reflects\
+the authentication response.\
+D.
+\f1  
+\f0 E.
+\f1  
+\f0 Update LoginServiceTest.java to include more functional test cases based on Selenium.\
+Your goal should be to critically write test cases from both developer and test-team\
+member\'92s point of view to find flaws in the system.\
+F.
+\f1  
+\f0 Submit your work.\
+Submit the following files to OnTrack.\
+\'95
+\f1  
+\f0 A PDF file listing unit test cases from developer point-of-view and functional test cases\
+from test-team point-of-view. You can use a table to describe each test case name,\
+description, intended result and test results.\
+\'95
+\f1  
+\f0 A self-reflection on the difference between writing test cases for developers themselves\
+(unit tests) and testing team-members (functional tests). Justify your findings w.r.t. a\
+Venn diagram specially, any untested regions of functional requirements.\
+\'95
+\f1  
+\f0 Your program\'92s source code.\
+\'95
+\f1  
+\f0 A screenshot of your GitHub page where your latest project folder is pushed.\
+You should discuss the following key ideas while preparing the submission items in relation to\
+your program.\
+\'95
+\f1  
+\f0 Unit testing and functional testing.\
+\'95
+\f1  
+\f0 Satisfy functional specifications.\
+\'95
+\f1  
+\f0 Integration tests in terms of functional testing (integrating front-end with the back end).\
+
+\fs28 Submit your work\
+
+\fs24 When you are ready, login to OnTrack and submit your pdf which consolidates all the items\
+mentioned in the submission detail section above. Remember to save and backup your work.\
+
+\fs28 Complete your work\
+
+\fs24 After your submission, your OnTrack reviewer (tutor) will review your submission and give you\
+feedback in about 5 business days. Your reviewer may further ask you some questions on theweekly topics and/or about your submissions. You are required to address your OnTrack\
+reviewer\'92s questions as a form of task discussions. Please frequently login to OnTrack for the\
+task Discuss/Demonstrate or Resubmit equivalent to fix your work (if needed) based on the\
+feedback to get your task signed as Complete.}
